@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0b" />
+
+  <title>Book a Meeting — Steelexmachine</title>
+  <meta name="description" content="Book a meeting with Steelexmachine to discuss your engineering project — concept review, prototype build or long-form co-development." />
+  <link rel="canonical" href="./booking.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/form.css" />
+</head>
+<body data-screen-label="Booking">
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- HEADER (shared) -->
+  <header class="site-header">
+    <a href="./index.html" class="brand" aria-label="Steelexmachine home">
+      <span class="glyph">S</span><span class="word">Steel<em>e</em>xmachine</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="./products.html">Products</a>
+      <a href="./motorcycle-landing-gear.html">Featured</a>
+      <a href="./team.html">Team</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+    <div class="nav-status"><span class="dot"></span>ISO 9001 · Plant Operational</div>
+    <a href="./booking.html" class="btn btn-primary header-cta">Book a Meeting<span class="arrow">→</span></a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+    <nav aria-label="Mobile primary">
+      <a href="./index.html"><span>Home</span><span class="num">01</span></a>
+      <a href="./products.html"><span>Products</span><span class="num">02</span></a>
+      <a href="./motorcycle-landing-gear.html"><span>Featured</span><span class="num">03</span></a>
+      <a href="./team.html"><span>Team</span><span class="num">04</span></a>
+      <a href="./booking.html"><span>Book a Meeting</span><span class="num">05</span></a>
+      <a href="./contact.html"><span>Contact</span><span class="num">06</span></a>
+    </nav>
+    <a href="./booking.html" class="btn btn-primary mm-cta">Book a Meeting<span class="arrow">→</span></a>
+    <div class="mm-meta">ISO 9001 · Ahmedabad, IN · UTC+05:30</div>
+  </div>
+
+  <main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="hero" style="min-height: auto; padding-bottom: 56px;" data-screen-label="01 Page Hero">
+    <div class="hero-top mono">
+      <div class="coords">Index · Booking</div>
+      <div class="center">— Schedule an engineering conversation —</div>
+      <div class="id">PG 05 / 06</div>
+    </div>
+    <div class="hero-main">
+      <h1 class="hero-title">Book a <em>meeting.</em></h1>
+      <aside class="hero-aside">
+        <p>Tell us a bit about your project. We typically respond within two business days and propose a few time windows that work across time zones.</p>
+        <span class="stamp mono"><span class="dot"></span>Open to new projects · Concept stage onwards</span>
+      </aside>
+    </div>
+  </section>
+
+  <!-- BOOKING FORM -->
+  <section class="section" data-screen-label="02 Form" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="label mono"><span class="num">[ 01 ]</span><span>— Booking Form</span></div>
+      <h2>A few details <em>to get started.</em></h2>
+      <p class="desc">Required fields are marked with <span style="color: var(--accent);">*</span>. Your submission opens your email client with the message preformatted to <strong style="color: var(--paper);"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="671008150c1427141302020b021f0a06040f0e09024904080a">[email&#160;protected]</a></strong>.</p>
+    </div>
+
+    <!-- form-shell wraps a left form column and a right info column -->
+    <div class="form-shell">
+      <div class="form-body">
+        <form class="form" data-static-form data-mail-subject="Meeting request — Steelexmachine" novalidate>
+          <!-- Identity row -->
+          <div class="form-row">
+            <div class="field">
+              <label for="b-name">Full name <span class="req">*</span></label>
+              <input id="b-name" name="full_name" type="text" autocomplete="name" required placeholder="Jane Engineer" />
+              <span class="err-msg">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="b-company">Company / Organisation</label>
+              <input id="b-company" name="company" type="text" autocomplete="organization" placeholder="Acme Mobility Ltd." />
+            </div>
+          </div>
+
+          <!-- Contact row -->
+          <div class="form-row">
+            <div class="field">
+              <label for="b-email">Email <span class="req">*</span></label>
+              <input id="b-email" name="email" type="email" autocomplete="email" required placeholder="jane@acme.com" />
+              <span class="err-msg">Please enter a valid email address.</span>
+            </div>
+            <div class="field">
+              <label for="b-phone">Phone <span class="hint">(optional, include country code)</span></label>
+              <input id="b-phone" name="phone" type="tel" autocomplete="tel" placeholder="+1 415 555 0117" />
+            </div>
+          </div>
+
+          <!-- Project type -->
+          <fieldset class="field" style="border: 0; padding: 0; margin: 0;">
+            <legend><label as="span">Project area <span class="req">*</span></label></legend>
+            <div class="chips" role="radiogroup" aria-label="Project area">
+              <input type="radio" name="project_area" id="pa-lg" value="Motorcycle Landing Gear" required />
+              <label for="pa-lg">Motorcycle Landing Gear</label>
+              <input type="radio" name="project_area" id="pa-dy" value="Textile Dyeing Machines" />
+              <label for="pa-dy">Textile Dyeing Machines</label>
+              <input type="radio" name="project_area" id="pa-sp" value="Submersible Water Pumps" />
+              <label for="pa-sp">Submersible Pumps</label>
+              <input type="radio" name="project_area" id="pa-other" value="Other / Bespoke" />
+              <label for="pa-other">Other / Bespoke</label>
+            </div>
+            <span class="err-msg">Please pick the project area.</span>
+          </fieldset>
+
+          <!-- Engagement -->
+          <div class="form-row">
+            <div class="field field--select">
+              <label for="b-engagement">Engagement type <span class="req">*</span></label>
+              <select id="b-engagement" name="engagement" required>
+                <option value="">Select an option…</option>
+                <option>Concept Review (Track A)</option>
+                <option>Custom Prototype (Track B)</option>
+                <option>Co-Development (Track C)</option>
+                <option>Not sure yet — let's discuss</option>
+              </select>
+              <span class="err-msg">Pick an engagement track.</span>
+            </div>
+            <div class="field field--select">
+              <label for="b-tz">Time zone <span class="hint">(your local)</span></label>
+              <select id="b-tz" name="time_zone">
+                <option value="">Select…</option>
+                <option>UTC-08 — PT (Los Angeles)</option>
+                <option>UTC-05 — ET (New York)</option>
+                <option>UTC+00 — GMT (London)</option>
+                <option>UTC+01 — CET (Berlin / Milan)</option>
+                <option>UTC+05:30 — IST (India)</option>
+                <option>UTC+08 — SGT / CST (Singapore / Shanghai)</option>
+                <option>UTC+09 — JST (Tokyo)</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Preferred date -->
+          <div class="form-row">
+            <div class="field">
+              <label for="b-date">Preferred date <span class="hint">(optional)</span></label>
+              <input id="b-date" name="preferred_date" type="date" />
+            </div>
+            <div class="field">
+              <label for="b-time">Preferred time window</label>
+              <input id="b-time" name="preferred_time" type="text" placeholder="e.g. mornings, 09:00 — 12:00" />
+            </div>
+          </div>
+
+          <!-- Message -->
+          <div class="field">
+            <label for="b-msg">Project brief <span class="req">*</span></label>
+            <textarea id="b-msg" name="brief" required placeholder="A short description of the application, current stage and the questions you'd like to discuss."></textarea>
+            <span class="err-msg">Please give us a short brief so we can prepare for the call.</span>
+          </div>
+
+          <!-- Consent / submit -->
+          <div class="form-actions">
+            <button type="submit" class="submit">Submit Request<span class="arrow">→</span></button>
+            <span class="small">We'll reply within 2 business days · No marketing.</span>
+          </div>
+        </form>
+
+        <!-- Status message rendered by js/main.js -->
+        <div class="form-status" role="status">
+          <span class="icon" aria-hidden="true">✓</span>
+          <span class="msg">Your message is ready.</span>
+        </div>
+      </div>
+
+      <!-- Right info column -->
+      <aside class="form-side" aria-label="Booking information">
+        <h3>What happens after you submit?</h3>
+        <p>Your details land in our engineering inbox. A senior engineer reads it within two business days and replies with a few time windows.</p>
+        <p>For prototype and co-development engagements, we usually start with a 30-min call to scope the brief before any commercial discussion.</p>
+
+        <div class="side-row">
+          <span class="k">Direct line</span>
+          <span class="v"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="562139243d2516252233333a332e3b37353e3f38337835393b">[email&#160;protected]</a></span>
+        </div>
+        <div class="side-row">
+          <span class="k">Telephone</span>
+          <span class="v">+91 79 4002 2210</span>
+        </div>
+        <div class="side-row">
+          <span class="k">Hours</span>
+          <span class="v">Mon — Sat<br/>09:00 — 19:00 IST<br/>UTC + 05:30</span>
+        </div>
+        <div class="side-row">
+          <span class="k">NDA</span>
+          <span class="v">Available on request before the call</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="left">© 1997 — 2026 Steelexmachine Engineering Works Pvt. Ltd.</div>
+    <div class="center">Made in Ahmedabad · Shipped Worldwide</div>
+    <div class="right">
+      <a href="./index.html">Home</a>
+      <a href="./products.html">Products</a>
+      <a href="./team.html">Team</a>
+      <a href="./contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="./js/main.js" defer></script>
+</body>
+</html>
