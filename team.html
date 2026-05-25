@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0b" />
+
+  <title>Team — Steelexmachine</title>
+  <meta name="description" content="The engineers behind Steelexmachine — mechanical design, production, quality and operations." />
+  <link rel="canonical" href="./team.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <style>
+    /* Team-specific styles (page-local) ------------------------------------- */
+    .team-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      border: 1px solid var(--steel);
+    }
+    .member {
+      border-right: 1px solid var(--steel);
+      display: grid; grid-template-rows: auto 1fr;
+      transition: background .3s;
+      isolation: isolate;
+    }
+    .member:last-child { border-right: 0; }
+    .member:hover { background: var(--ink-2); }
+    .member .portrait {
+      position: relative; overflow: hidden;
+      border-bottom: 1px solid var(--steel);
+      aspect-ratio: 4 / 5;
+      background: var(--ink-2);
+    }
+    .member .portrait::before {
+      content:""; position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(circle at 50% 30%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 60%),
+        linear-gradient(180deg, var(--ink-3), var(--ink-2));
+    }
+    .member .portrait::after {
+      content:""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image: repeating-linear-gradient(180deg, transparent 0, transparent 22px, color-mix(in oklab, var(--steel) 70%, transparent) 22px, color-mix(in oklab, var(--steel) 70%, transparent) 23px);
+      opacity: 0.5;
+    }
+    /* IMAGE PLACEHOLDER inside .portrait — drop in <img class="viz-img" src="./assets/images/team-NAME.jpg" alt="…"> */
+    .member .silhouette { position: absolute; inset: 0; display: grid; place-items: end center; z-index: 2; color: color-mix(in oklab, var(--paper) 30%, transparent); }
+    .member .silhouette svg { width: 70%; height: 88%; }
+    .member .pstamp {
+      position: absolute; top: 14px; left: 14px; z-index: 3;
+      font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--mute-2);
+      background: color-mix(in oklab, var(--ink) 75%, transparent);
+      padding: 4px 8px; border: 1px solid var(--steel);
+    }
+    .member .info { padding: 22px 22px 26px; display: grid; gap: 6px; }
+    .member .info .role { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+    .member .info h3 { font-family: var(--font-display); font-size: 22px; font-weight: 500; letter-spacing: -0.015em; line-height: 1.15; margin: 0; }
+    .member .info .disc { font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.06em; text-transform: uppercase; margin-top: 4px; }
+
+    .team-note {
+      padding: 24px 0 0;
+      display: flex; justify-content: space-between; gap: 24px; align-items: center; flex-wrap: wrap;
+      color: var(--mute); font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+    }
+
+    /* Disciplines split */
+    .disc-split {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      border: 1px solid var(--steel); border-top: 0;
+    }
+    .disc-cell {
+      padding: 28px 24px; border-right: 1px solid var(--steel);
+      display: grid; gap: 8px; align-content: start;
+    }
+    .disc-cell:last-child { border-right: 0; }
+    .disc-cell .n { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; }
+    .disc-cell h4 { font-family: var(--font-display); font-size: 18px; font-weight: 500; margin: 0; }
+    .disc-cell .v { font-family: var(--font-mono); font-size: 22px; font-weight: 500; letter-spacing: -0.015em; color: var(--paper); }
+
+    @media (max-width: 1100px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .member:nth-child(2n) { border-right: 0; }
+      .member:nth-child(-n+2) { border-bottom: 1px solid var(--steel); }
+      .disc-split { grid-template-columns: repeat(2, 1fr); }
+      .disc-cell:nth-child(2n) { border-right: 0; }
+      .disc-cell:nth-child(-n+2) { border-bottom: 1px solid var(--steel); }
+    }
+    @media (max-width: 700px) {
+      .team-grid { grid-template-columns: 1fr; }
+      .member { border-right: 0; border-bottom: 1px solid var(--steel); }
+      .member:last-child { border-bottom: 0; }
+      .member .portrait { aspect-ratio: 16/10; }
+      .disc-split { grid-template-columns: 1fr; }
+      .disc-cell { border-right: 0; border-bottom: 1px solid var(--steel); }
+      .disc-cell:last-child { border-bottom: 0; }
+    }
+  </style>
+</head>
+<body data-screen-label="Team">
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- HEADER (shared) -->
+  <header class="site-header">
+    <a href="./index.html" class="brand" aria-label="Steelexmachine home">
+      <span class="glyph">S</span><span class="word">Steel<em>e</em>xmachine</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="./products.html">Products</a>
+      <a href="./motorcycle-landing-gear.html">Featured</a>
+      <a href="./team.html">Team</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+    <div class="nav-status"><span class="dot"></span>ISO 9001 · Plant Operational</div>
+    <a href="./booking.html" class="btn btn-primary header-cta">Book a Meeting<span class="arrow">→</span></a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+    <nav aria-label="Mobile primary">
+      <a href="./index.html"><span>Home</span><span class="num">01</span></a>
+      <a href="./products.html"><span>Products</span><span class="num">02</span></a>
+      <a href="./motorcycle-landing-gear.html"><span>Featured</span><span class="num">03</span></a>
+      <a href="./team.html"><span>Team</span><span class="num">04</span></a>
+      <a href="./booking.html"><span>Book a Meeting</span><span class="num">05</span></a>
+      <a href="./contact.html"><span>Contact</span><span class="num">06</span></a>
+    </nav>
+    <a href="./booking.html" class="btn btn-primary mm-cta">Book a Meeting<span class="arrow">→</span></a>
+    <div class="mm-meta">ISO 9001 · Ahmedabad, IN · UTC+05:30</div>
+  </div>
+
+  <main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="hero" style="min-height: auto; padding-bottom: 56px;" data-screen-label="01 Page Hero">
+    <div class="hero-top mono">
+      <div class="coords">Index · Team</div>
+      <div class="center">— 142 engineers · Four disciplines —</div>
+      <div class="id">PG 04 / 06</div>
+    </div>
+    <div class="hero-main">
+      <h1 class="hero-title">The <em>team.</em></h1>
+      <aside class="hero-aside">
+        <p>142 engineers across mechanical, electrical, manufacturing and quality disciplines — working out of a single 14,200 m² floor in Ahmedabad.</p>
+        <div class="hero-ctas">
+          <a href="./booking.html" class="btn btn-primary">Book a Meeting<span class="arrow">→</span></a>
+          <a href="./contact.html" class="btn">Send a Message<span class="arrow">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- TEAM GRID -->
+  <!-- IMAGE PLACEHOLDERS: each .portrait needs a real headshot.
+       Drop files at ./assets/images/team-rohan.jpg, team-anjali.jpg, etc.
+       Replace each <div class="silhouette">…SVG…</div> with
+       <img class="viz-img" src="./assets/images/team-rohan.jpg" alt="Rohan Mehta"> -->
+  <section class="section" data-screen-label="02 Team">
+    <div class="section-head">
+      <div class="label mono"><span class="num">[ 01 ]</span><span>— Leadership</span></div>
+      <h2>The people <em>behind the works.</em></h2>
+      <p class="desc">Four leads coordinating the engineering, production, quality and operations functions. Photography to be added shortly.</p>
+    </div>
+
+    <div class="team-grid reveal">
+      <article class="member">
+        <div class="portrait">
+          <span class="pstamp">001 · FOUNDER</span>
+          <div class="silhouette" aria-hidden="true">
+            <svg viewBox="0 0 100 130" fill="none" stroke="currentColor" stroke-width="1"><circle cx="50" cy="36" r="20"/><path d="M14 130 Q14 80 50 80 Q86 80 86 130"/></svg>
+          </div>
+        </div>
+        <div class="info">
+          <span class="role">Founder &amp; Principal Engineer</span>
+          <h3>Rohan Mehta</h3>
+          <span class="disc">28 yrs · Mechanical · IIT-B '97</span>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="portrait">
+          <span class="pstamp">002 · DESIGN</span>
+          <div class="silhouette" aria-hidden="true">
+            <svg viewBox="0 0 100 130" fill="none" stroke="currentColor" stroke-width="1"><circle cx="50" cy="34" r="20"/><path d="M30 56 Q40 78 30 100" opacity=".5"/><path d="M14 130 Q14 80 50 80 Q86 80 86 130"/></svg>
+          </div>
+        </div>
+        <div class="info">
+          <span class="role">Head of Mechanical Design</span>
+          <h3>Anjali Desai</h3>
+          <span class="disc">14 yrs · CAD / FEA · CEPT</span>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="portrait">
+          <span class="pstamp">003 · OPS</span>
+          <div class="silhouette" aria-hidden="true">
+            <svg viewBox="0 0 100 130" fill="none" stroke="currentColor" stroke-width="1"><circle cx="50" cy="36" r="22"/><path d="M40 36 L60 36" opacity=".4"/><path d="M14 130 Q14 80 50 80 Q86 80 86 130"/></svg>
+          </div>
+        </div>
+        <div class="info">
+          <span class="role">Director, Production</span>
+          <h3>Sanjay Patel</h3>
+          <span class="disc">22 yrs · Manufacturing · Lean Six Sigma</span>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="portrait">
+          <span class="pstamp">004 · QA</span>
+          <div class="silhouette" aria-hidden="true">
+            <svg viewBox="0 0 100 130" fill="none" stroke="currentColor" stroke-width="1"><circle cx="50" cy="34" r="20"/><path d="M28 60 Q34 90 26 110" opacity=".5"/><path d="M72 60 Q66 90 74 110" opacity=".5"/><path d="M14 130 Q14 80 50 80 Q86 80 86 130"/></svg>
+          </div>
+        </div>
+        <div class="info">
+          <span class="role">Quality &amp; Validation Lead</span>
+          <h3>Priya Krishnan</h3>
+          <span class="disc">11 yrs · Metrology · ASQ Certified</span>
+        </div>
+      </article>
+    </div>
+
+    <div class="team-note">
+      <span>Showing 04 of 142 — we hire across mechanical, electrical and process disciplines.</span>
+      <a class="btn" href="./contact.html">Open Positions<span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- DISCIPLINE SPLIT -->
+  <section class="section" data-screen-label="03 Disciplines" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="label mono"><span class="num">[ 02 ]</span><span>— Disciplines</span></div>
+      <h2>Headcount, <em>roughly.</em></h2>
+      <p class="desc">Approximate distribution across the four primary disciplines, including engineers, technicians and apprentices.</p>
+    </div>
+    <div class="disc-split">
+      <div class="disc-cell"><span class="n">A</span><h4>Mechanical Design</h4><span class="v">48 engineers</span></div>
+      <div class="disc-cell"><span class="n">B</span><h4>Manufacturing &amp; Tooling</h4><span class="v">62 engineers</span></div>
+      <div class="disc-cell"><span class="n">C</span><h4>Quality &amp; Validation</h4><span class="v">18 engineers</span></div>
+      <div class="disc-cell"><span class="n">D</span><h4>Electrical &amp; Controls</h4><span class="v">14 engineers</span></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="label mono"><span class="num">[ 03 ]</span><span>— Join</span></div>
+    <div class="cta-body">
+      <h2>We're hiring engineers <em>who build for decades.</em></h2>
+      <div class="cta-actions">
+        <a href="./booking.html" class="btn btn-primary">Book a Conversation<span class="arrow">→</span></a>
+        <a href="./contact.html" class="btn">Send Your CV<span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="left">© 1997 — 2026 Steelexmachine Engineering Works Pvt. Ltd.</div>
+    <div class="center">Made in Ahmedabad · Shipped Worldwide</div>
+    <div class="right">
+      <a href="./index.html">Home</a>
+      <a href="./products.html">Products</a>
+      <a href="./contact.html">Contact</a>
+      <a href="./booking.html">Book</a>
+    </div>
+  </footer>
+
+  <script src="./js/main.js" defer></script>
+</body>
+</html>

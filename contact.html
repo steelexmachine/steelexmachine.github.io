@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#0a0a0b" />
+
+  <title>Contact — Steelexmachine</title>
+  <meta name="description" content="Contact Steelexmachine — engineering enquiries, plant address and direct lines to the team in Ahmedabad, India." />
+  <link rel="canonical" href="./contact.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" />
+  <link rel="stylesheet" href="./css/style.css" />
+  <link rel="stylesheet" href="./css/form.css" />
+  <style>
+    /* Page-local: location map placeholder + channel grid */
+    .channels {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      border: 1px solid var(--steel);
+    }
+    .chan {
+      padding: 28px 24px; border-right: 1px solid var(--steel);
+      display: grid; gap: 8px; align-content: start; min-height: 180px;
+      transition: background .3s;
+    }
+    .chan:last-child { border-right: 0; }
+    .chan:hover { background: var(--ink-2); }
+    .chan .n { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; }
+    .chan .k { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--mute); }
+    .chan .v { font-family: var(--font-display); font-size: 18px; font-weight: 500; line-height: 1.3; color: var(--paper); }
+    .chan a.v:hover { color: var(--accent); }
+
+    /* Map placeholder — replace .map-art with an <iframe> or real map image when ready */
+    .map {
+      margin-top: 40px;
+      aspect-ratio: 21 / 8;
+      border: 1px solid var(--steel);
+      background: var(--ink-2);
+      position: relative; overflow: hidden; isolation: isolate;
+    }
+    .map::before {
+      content:""; position: absolute; inset: 0; z-index: 0;
+      background:
+        radial-gradient(circle at 60% 50%, color-mix(in oklab, var(--accent) 16%, transparent), transparent 50%),
+        linear-gradient(180deg, var(--ink-3), var(--ink-2));
+    }
+    .map::after {
+      content:""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+      background-image:
+        linear-gradient(to right, color-mix(in oklab, var(--steel) 50%, transparent) 1px, transparent 1px),
+        linear-gradient(to bottom, color-mix(in oklab, var(--steel) 50%, transparent) 1px, transparent 1px);
+      background-size: 56px 56px; opacity: 0.35;
+    }
+    .map .pin {
+      position: absolute; left: 60%; top: 50%; transform: translate(-50%, -50%);
+      width: 18px; height: 18px; background: var(--accent); border-radius: 50%;
+      box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent);
+      animation: pulse 2.4s infinite; z-index: 4;
+    }
+    @keyframes pulse { 0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 50%, transparent);} 70% { box-shadow: 0 0 0 24px color-mix(in oklab, var(--accent) 0%, transparent);} 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 0%, transparent);} }
+    .map .pin-label {
+      position: absolute; left: 60%; top: 50%; transform: translate(20px, -50%);
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+      background: color-mix(in oklab, var(--ink) 80%, transparent); padding: 6px 10px;
+      border: 1px solid var(--steel); color: var(--paper); z-index: 4;
+    }
+    .map .coords {
+      position: absolute; left: 18px; bottom: 14px; z-index: 4;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+    }
+    .map .scale {
+      position: absolute; right: 18px; bottom: 14px; z-index: 4;
+      font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+    }
+    .map .corner { position: absolute; width: 16px; height: 16px; border-color: var(--paper); z-index: 3; }
+    .map .corner.tl { top: 14px; left: 14px; border-top: 1px solid; border-left: 1px solid; }
+    .map .corner.tr { top: 14px; right: 14px; border-top: 1px solid; border-right: 1px solid; }
+    .map .corner.bl { bottom: 14px; left: 14px; border-bottom: 1px solid; border-left: 1px solid; }
+    .map .corner.br { bottom: 14px; right: 14px; border-bottom: 1px solid; border-right: 1px solid; }
+
+    @media (max-width: 1100px) {
+      .channels { grid-template-columns: repeat(2, 1fr); }
+      .chan:nth-child(2n) { border-right: 0; }
+      .chan:nth-child(-n+2) { border-bottom: 1px solid var(--steel); }
+      .map { aspect-ratio: 16/10; }
+    }
+    @media (max-width: 700px) {
+      .channels { grid-template-columns: 1fr; }
+      .chan { border-right: 0; border-bottom: 1px solid var(--steel); }
+      .chan:last-child { border-bottom: 0; }
+      .map { aspect-ratio: 4/5; }
+      .map .pin-label { transform: translate(20px, -28px); }
+    }
+  </style>
+</head>
+<body data-screen-label="Contact">
+
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <!-- HEADER (shared) -->
+  <header class="site-header">
+    <a href="./index.html" class="brand" aria-label="Steelexmachine home">
+      <span class="glyph">S</span><span class="word">Steel<em>e</em>xmachine</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="./products.html">Products</a>
+      <a href="./motorcycle-landing-gear.html">Featured</a>
+      <a href="./team.html">Team</a>
+      <a href="./contact.html">Contact</a>
+    </nav>
+    <div class="nav-status"><span class="dot"></span>ISO 9001 · Plant Operational</div>
+    <a href="./booking.html" class="btn btn-primary header-cta">Book a Meeting<span class="arrow">→</span></a>
+    <button class="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+  </header>
+  <div class="mobile-menu" id="mobile-menu" aria-label="Mobile menu">
+    <nav aria-label="Mobile primary">
+      <a href="./index.html"><span>Home</span><span class="num">01</span></a>
+      <a href="./products.html"><span>Products</span><span class="num">02</span></a>
+      <a href="./motorcycle-landing-gear.html"><span>Featured</span><span class="num">03</span></a>
+      <a href="./team.html"><span>Team</span><span class="num">04</span></a>
+      <a href="./booking.html"><span>Book a Meeting</span><span class="num">05</span></a>
+      <a href="./contact.html"><span>Contact</span><span class="num">06</span></a>
+    </nav>
+    <a href="./booking.html" class="btn btn-primary mm-cta">Book a Meeting<span class="arrow">→</span></a>
+    <div class="mm-meta">ISO 9001 · Ahmedabad, IN · UTC+05:30</div>
+  </div>
+
+  <main id="main">
+
+  <!-- PAGE HERO -->
+  <section class="hero" style="min-height: auto; padding-bottom: 56px;" data-screen-label="01 Page Hero">
+    <div class="hero-top mono">
+      <div class="coords">N 23.0225° / E 72.5714°</div>
+      <div class="center">— Direct lines to engineering &amp; works —</div>
+      <div class="id">PG 06 / 06</div>
+    </div>
+    <div class="hero-main">
+      <h1 class="hero-title">Get in <em>touch.</em></h1>
+      <aside class="hero-aside">
+        <p>Whether it's a quick technical question, an RFQ or a partnership exploration — pick the channel that fits, or send a quick message and we'll route it.</p>
+        <div class="hero-ctas">
+          <a href="./booking.html" class="btn btn-primary">Book a Meeting<span class="arrow">→</span></a>
+          <a href="/cdn-cgi/l/email-protection#8cfbe3fee7ffccfff8e9e9e0e9f4e1edefe4e5e2e9a2efe3e1" class="btn">Email Directly<span class="arrow">→</span></a>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CHANNELS GRID -->
+  <section class="section" data-screen-label="02 Channels" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="label mono"><span class="num">[ 01 ]</span><span>— Direct Channels</span></div>
+      <h2>Four ways to <em>reach us.</em></h2>
+      <p class="desc">Different routes for different needs. Engineering enquiries land with a senior engineer; commercial enquiries with operations.</p>
+    </div>
+    <div class="channels">
+      <div class="chan">
+        <span class="n">01</span>
+        <span class="k">Engineering Enquiries</span>
+        <a class="v" href="/cdn-cgi/l/email-protection#3d4a524f564e7d4e495858515845505c5e55545358135e5250"><span class="__cf_email__" data-cfemail="661109140d1526151203030a031e0b07050e0f08034805090b">[email&#160;protected]</span></a>
+      </div>
+      <div class="chan">
+        <span class="n">02</span>
+        <span class="k">Commercial &amp; Procurement</span>
+        <a class="v" href="/cdn-cgi/l/email-protection#384b59545d4b784b4c5d5d545d4055595b5051565d165b5755"><span class="__cf_email__" data-cfemail="bac9dbd6dfc9fac9cedfdfd6dfc2d7dbd9d2d3d4df94d9d5d7">[email&#160;protected]</span></a>
+      </div>
+      <div class="chan">
+        <span class="n">03</span>
+        <span class="k">Telephone</span>
+        <a class="v" href="tel:+917940022210">+91 79 4002 2210</a>
+      </div>
+      <div class="chan">
+        <span class="n">04</span>
+        <span class="k">Careers</span>
+        <a class="v" href="/cdn-cgi/l/email-protection#92f1f3e0f7f7e0e1d2e1e6f7f7fef7eafff3f1fafbfcf7bcf1fdff"><span class="__cf_email__" data-cfemail="e380829186869190a3909786868f869b8e82808b8a8d86cd808c8e">[email&#160;protected]</span></a>
+      </div>
+    </div>
+
+    <!-- LOCATION MAP -->
+    <!-- TO REPLACE WITH A REAL MAP: swap the entire .map element below with
+         <iframe src="https://www.google.com/maps/embed?…" style="width:100%; aspect-ratio: 21/8; border: 1px solid var(--steel);"></iframe> -->
+    <div class="map" aria-label="Plant location placeholder">
+      <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+      <span class="pin"></span>
+      <span class="pin-label">Steelexmachine Works · Vatva GIDC</span>
+      <span class="coords">N 23.0225° / E 72.5714°</span>
+      <span class="scale">SCALE 1 : 5000</span>
+    </div>
+  </section>
+
+  <!-- MESSAGE FORM -->
+  <section class="section" data-screen-label="03 Form" style="padding-top: 0;">
+    <div class="section-head">
+      <div class="label mono"><span class="num">[ 02 ]</span><span>— Send a Message</span></div>
+      <h2>Quick note <em>to the team.</em></h2>
+      <p class="desc">For longer projects, the <a href="./booking.html" style="color: var(--accent);">booking form</a> captures the brief in more detail.</p>
+    </div>
+
+    <div class="form-shell">
+      <div class="form-body">
+        <form class="form" data-static-form data-mail-subject="Contact form — Steelexmachine" novalidate>
+          <div class="form-row">
+            <div class="field">
+              <label for="c-name">Full name <span class="req">*</span></label>
+              <input id="c-name" name="full_name" type="text" autocomplete="name" required placeholder="Jane Engineer" />
+              <span class="err-msg">Please enter your name.</span>
+            </div>
+            <div class="field">
+              <label for="c-email">Email <span class="req">*</span></label>
+              <input id="c-email" name="email" type="email" autocomplete="email" required placeholder="jane@acme.com" />
+              <span class="err-msg">Please enter a valid email.</span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="field">
+              <label for="c-company">Company <span class="hint">(optional)</span></label>
+              <input id="c-company" name="company" type="text" autocomplete="organization" placeholder="Acme Ltd." />
+            </div>
+            <div class="field field--select">
+              <label for="c-topic">Topic <span class="req">*</span></label>
+              <select id="c-topic" name="topic" required>
+                <option value="">Select a topic…</option>
+                <option>Engineering enquiry</option>
+                <option>Commercial / RFQ</option>
+                <option>Plant visit</option>
+                <option>Press / Media</option>
+                <option>Careers</option>
+                <option>Other</option>
+              </select>
+              <span class="err-msg">Please choose a topic.</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="c-msg">Message <span class="req">*</span></label>
+            <textarea id="c-msg" name="message" required placeholder="A short message — we'll route it to the right team."></textarea>
+            <span class="err-msg">Please write a short message.</span>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="submit">Send Message<span class="arrow">→</span></button>
+            <span class="small">Replies within 2 business days.</span>
+          </div>
+        </form>
+        <div class="form-status" role="status">
+          <span class="icon" aria-hidden="true">✓</span>
+          <span class="msg">Your message is ready.</span>
+        </div>
+      </div>
+
+      <aside class="form-side" aria-label="Office info">
+        <h3>Works &amp; Office</h3>
+        <p>Plot 14, GIDC Phase III<br/>Vatva, Ahmedabad 382445<br/>Gujarat, India</p>
+        <div class="side-row">
+          <span class="k">Hours</span>
+          <span class="v">Mon — Sat<br/>09:00 — 19:00 IST</span>
+        </div>
+        <div class="side-row">
+          <span class="k">Time zone</span>
+          <span class="v">UTC + 05:30</span>
+        </div>
+        <div class="side-row">
+          <span class="k">Plant visits</span>
+          <span class="v">By appointment only</span>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="left">© 1997 — 2026 Steelexmachine Engineering Works Pvt. Ltd.</div>
+    <div class="center">Made in Ahmedabad · Shipped Worldwide</div>
+    <div class="right">
+      <a href="./index.html">Home</a>
+      <a href="./products.html">Products</a>
+      <a href="./team.html">Team</a>
+      <a href="./booking.html">Book</a>
+    </div>
+  </footer>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="./js/main.js" defer></script>
+</body>
+</html>

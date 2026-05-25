@@ -1,0 +1,343 @@
+/* =========================================================================
+   STEELEXMACHINE — Product page styles
+   Used by motorcycle-landing-gear.html and any future product pages.
+   ---------------------------------------------------------------------------
+   Sections:
+     1. Breadcrumb
+     2. Schematic stage (big annotated visual)
+     3. Overview row
+     4. Problem / Solution
+     5. Feature tiles
+     6. Engineering advantages list
+     7. Gallery strip (scroll-snap on desktop, grid on mobile)
+     8. Development options (3 tiers)
+   ========================================================================= */
+
+
+/* ============== 1. BREADCRUMB ============== */
+.crumb {
+  padding: calc(var(--edge) + 76px) var(--edge) 24px;
+  display: flex; align-items: center; flex-wrap: wrap; gap: 14px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--mute);
+}
+.crumb a:hover { color: var(--paper); }
+.crumb .sep { color: var(--steel-3); }
+.crumb .here { color: var(--paper); }
+.crumb .pull-right { margin-left: auto; color: var(--accent); }
+
+
+/* ============== 2. SCHEMATIC STAGE ============== */
+.stage {
+  margin: 0 var(--edge);
+  aspect-ratio: 16 / 8.4;
+  border: 1px solid var(--steel);
+  background: var(--ink-2);
+  position: relative; overflow: hidden; isolation: isolate;
+}
+.stage::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(closest-side at 50% 70%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 70%),
+    repeating-linear-gradient(45deg, transparent 0, transparent 18px, color-mix(in oklab, var(--steel) 70%, transparent) 18px, color-mix(in oklab, var(--steel) 70%, transparent) 19px),
+    linear-gradient(180deg, var(--ink-3), var(--ink-2));
+}
+.stage::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--steel) 60%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--steel) 60%, transparent) 1px, transparent 1px);
+  background-size: 80px 80px; opacity: 0.35;
+}
+.stage-mark { position: absolute; top: 24px; left: 28px; z-index: 5; display: grid; gap: 6px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; }
+.stage-mark .id { color: var(--accent); }
+.stage-mark .name { color: var(--mute-2); }
+.stage-foot { position: absolute; left: 28px; right: 28px; bottom: 20px; z-index: 5; display: flex; justify-content: space-between; align-items: end; font-family: var(--font-mono); font-size: 11px; color: var(--mute); letter-spacing: 0.1em; text-transform: uppercase; flex-wrap: wrap; gap: 12px; }
+.stage-art { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; color: color-mix(in oklab, var(--paper) 78%, transparent); }
+.stage-art svg { width: 56%; height: auto; }
+.stage-corner { position: absolute; width: 22px; height: 22px; z-index: 4; border-color: var(--paper); }
+.stage-corner.tl { top: 16px; left: 16px; border-top: 1px solid; border-left: 1px solid; }
+.stage-corner.tr { top: 16px; right: 16px; border-top: 1px solid; border-right: 1px solid; }
+.stage-corner.bl { bottom: 16px; left: 16px; border-bottom: 1px solid; border-left: 1px solid; }
+.stage-corner.br { bottom: 16px; right: 16px; border-bottom: 1px solid; border-right: 1px solid; }
+.stage-annot {
+  position: absolute; z-index: 6; display: flex; align-items: center; gap: 12px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-2);
+}
+.stage-annot .pt { width: 10px; height: 10px; border: 1px solid var(--accent); background: color-mix(in oklab, var(--accent) 30%, transparent); border-radius: 50%; }
+.stage-annot .leader { width: 70px; height: 1px; background: var(--steel-3); }
+.stage-annot .tag { background: color-mix(in oklab, var(--ink) 80%, transparent); padding: 6px 10px; border: 1px solid var(--steel); }
+
+
+/* ============== 3. OVERVIEW ROW ============== */
+.overview {
+  display: grid; grid-template-columns: 220px 1.2fr 1fr; gap: 60px;
+}
+.overview .label { color: var(--mute); padding-top: 10px; display: flex; gap: 12px; align-items: baseline; }
+.overview .label .num { color: var(--accent); }
+.overview .copy {
+  display: grid; gap: 22px;
+  font-family: var(--font-display); font-weight: 300;
+  font-size: clamp(18px, 1.8vw, 26px); line-height: 1.4; color: var(--mute-2);
+  text-wrap: pretty;
+}
+.overview .copy strong { font-weight: 500; color: var(--paper); }
+.overview .copy em { font-style: italic; color: var(--accent); font-weight: 400; }
+.overview .side {
+  display: grid; gap: 0; align-content: start;
+  border-top: 1px solid var(--steel);
+}
+.overview .side .row {
+  display: grid; grid-template-columns: 1fr auto;
+  padding: 14px 0; border-bottom: 1px solid var(--steel);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em;
+}
+.overview .side .row .k { color: var(--mute); text-transform: uppercase; }
+.overview .side .row .v { color: var(--paper); }
+
+
+/* ============== 4. PROBLEM / SOLUTION ============== */
+.ps-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  border: 1px solid var(--steel);
+}
+.ps-cell {
+  padding: 36px 32px;
+  border-right: 1px solid var(--steel);
+  display: grid; gap: 16px; align-content: start;
+}
+.ps-cell:last-child { border-right: 0; background: color-mix(in oklab, var(--accent) 5%, var(--ink-2)); }
+.ps-cell .badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mute);
+}
+.ps-cell .badge .marker { width: 10px; height: 10px; border: 1px solid var(--steel-3); }
+.ps-cell.solution .badge { color: var(--accent); }
+.ps-cell.solution .badge .marker { background: var(--accent); border-color: var(--accent); }
+.ps-cell h3 {
+  font-family: var(--font-display); font-weight: 500;
+  font-size: clamp(20px, 2vw, 28px); line-height: 1.2; letter-spacing: -0.015em;
+  margin: 0; color: var(--paper);
+}
+.ps-cell p { font-size: 15px; line-height: 1.6; color: var(--mute-2); margin: 0; max-width: 50ch; }
+
+
+/* ============== 5. FEATURE TILES ============== */
+.feat-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border: 1px solid var(--steel);
+  background: linear-gradient(135deg, var(--ink-2), var(--ink));
+  position: relative;
+}
+.feat-grid::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--steel) 50%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--steel) 50%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px; opacity: 0.25;
+}
+.ftile {
+  position: relative; z-index: 1;
+  padding: 28px 24px;
+  border-right: 1px solid var(--steel);
+  display: grid; gap: 12px; align-content: start;
+  min-height: 260px;
+  transition: background .35s;
+}
+.ftile:nth-child(3n) { border-right: 0; }
+.ftile:nth-child(-n+3) { border-bottom: 1px solid var(--steel); }
+.ftile:hover { background: color-mix(in oklab, var(--ink-3) 80%, transparent); }
+.ftile .ix {
+  width: 52px; height: 52px;
+  display: grid; place-items: center;
+  border: 1px solid var(--steel-2);
+  background: color-mix(in oklab, var(--ink) 80%, transparent);
+  color: var(--paper);
+  position: relative;
+  transition: border-color .35s, color .35s, background .35s;
+}
+.ftile .ix::before { content: ""; position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); }
+.ftile .ix::after  { content: ""; position: absolute; right: -3px; bottom: -3px; width: 6px; height: 6px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); }
+.ftile:hover .ix { border-color: var(--accent); color: var(--accent); background: color-mix(in oklab, var(--accent) 8%, var(--ink)); }
+.ftile .ftop {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mute);
+}
+.ftile .ftop .n { color: var(--accent); }
+.ftile h4 { font-family: var(--font-display); font-size: 19px; font-weight: 500; line-height: 1.2; letter-spacing: -0.015em; margin: 0; color: var(--paper); }
+.ftile p  { font-size: 14px; line-height: 1.6; color: var(--mute-2); margin: 0; max-width: 34ch; }
+
+
+/* ============== 6. ENG ADVANTAGES (rows) ============== */
+.adv-list { border-top: 1px solid var(--steel); }
+.adv {
+  display: grid; grid-template-columns: 80px 1fr 1.4fr 200px;
+  gap: 40px; align-items: center;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--steel);
+  transition: background .3s, padding .3s;
+}
+.adv:hover { padding-left: 16px; padding-right: 16px; background: color-mix(in oklab, var(--accent) 4%, transparent); }
+.adv .n { font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.08em; }
+.adv h5 {
+  font-family: var(--font-display); font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.15; font-weight: 500; letter-spacing: -0.015em; margin: 0; color: var(--paper);
+}
+.adv .desc { font-size: 14px; line-height: 1.55; color: var(--mute-2); max-width: 50ch; margin: 0; }
+.adv .tag {
+  justify-self: end;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--mute);
+  display: inline-flex; align-items: center; gap: 8px;
+}
+.adv .tag .dot { width: 6px; height: 6px; background: var(--accent); display: inline-block; }
+
+
+/* ============== 7. GALLERY ============== */
+.gal-strip {
+  display: flex; gap: 20px; padding-bottom: 16px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: thin; scrollbar-color: var(--steel-2) transparent;
+}
+.gal-strip::-webkit-scrollbar { height: 4px; }
+.gal-strip::-webkit-scrollbar-thumb { background: var(--steel-2); }
+.gtile {
+  flex: 0 0 auto;
+  width: clamp(280px, 30vw, 460px);
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--steel);
+  background: var(--ink-2);
+  position: relative; overflow: hidden;
+  scroll-snap-align: start; isolation: isolate;
+}
+.gtile.wide { width: clamp(440px, 48vw, 700px); aspect-ratio: 16 / 10; }
+.gtile::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background:
+    radial-gradient(circle at 30% 30%, color-mix(in oklab, var(--accent) 12%, transparent), transparent 55%),
+    repeating-linear-gradient(135deg, transparent 0, transparent 14px, color-mix(in oklab, var(--steel) 75%, transparent) 14px, color-mix(in oklab, var(--steel) 75%, transparent) 15px),
+    linear-gradient(180deg, var(--ink-3), var(--ink-2));
+}
+.gtile::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--steel) 50%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--steel) 50%, transparent) 1px, transparent 1px);
+  background-size: 40px 40px; opacity: 0.4;
+}
+.gtile .gcorner { position: absolute; width: 14px; height: 14px; z-index: 3; border-color: var(--paper); }
+.gtile .gcorner.tl { top: 12px; left: 12px; border-top: 1px solid; border-left: 1px solid; }
+.gtile .gcorner.tr { top: 12px; right: 12px; border-top: 1px solid; border-right: 1px solid; }
+.gtile .gcorner.bl { bottom: 12px; left: 12px; border-bottom: 1px solid; border-left: 1px solid; }
+.gtile .gcorner.br { bottom: 12px; right: 12px; border-bottom: 1px solid; border-right: 1px solid; }
+.gtile .gglyph { position: absolute; inset: 0; display: grid; place-items: center; z-index: 2; color: color-mix(in oklab, var(--paper) 60%, transparent); }
+.gtile .gglyph svg { width: 50%; height: auto; opacity: 0.8; }
+.gtile .gstamp { position: absolute; top: 14px; right: 14px; z-index: 4; font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--paper-2); background: color-mix(in oklab, var(--ink) 75%, transparent); padding: 4px 8px; border: 1px solid var(--steel); }
+.gtile .gcap {
+  position: absolute; left: 14px; right: 14px; bottom: 14px; z-index: 4;
+  display: flex; justify-content: space-between; gap: 12px;
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+}
+.gtile .gcap .t { color: var(--paper); }
+.gtile .gcap .n { color: var(--mute); }
+.gal-foot {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding-top: 14px;
+  color: var(--mute); font-family: var(--font-mono); font-size: 11px;
+  letter-spacing: 0.08em; text-transform: uppercase; flex-wrap: wrap;
+}
+
+
+/* ============== 8. DEVELOPMENT OPTIONS ============== */
+.dev-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border: 1px solid var(--steel);
+}
+.dev-card {
+  padding: 28px 28px 32px;
+  border-right: 1px solid var(--steel);
+  display: grid; gap: 16px; align-content: start;
+  min-height: 340px;
+  transition: background .35s;
+}
+.dev-card:last-child { border-right: 0; }
+.dev-card:hover { background: var(--ink-2); }
+.dev-card.featured { background: color-mix(in oklab, var(--accent) 6%, var(--ink-2)); }
+.dev-card .level {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--mute);
+}
+.dev-card .level .n { color: var(--accent); }
+.dev-card .level .pill {
+  border: 1px solid var(--steel-2); padding: 4px 8px; font-size: 9px; color: var(--paper);
+}
+.dev-card.featured .level .pill { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.dev-card h4 {
+  font-family: var(--font-display); font-size: clamp(20px, 1.8vw, 28px);
+  font-weight: 500; line-height: 1.1; letter-spacing: -0.02em; margin: 0; color: var(--paper);
+}
+.dev-card .lead { font-size: 14px; line-height: 1.6; color: var(--mute-2); margin: 0; max-width: 36ch; }
+.dev-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.dev-card li {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.05em;
+  color: var(--mute-2); text-transform: uppercase;
+  display: grid; grid-template-columns: 12px 1fr; gap: 10px; align-items: start;
+}
+.dev-card li::before { content: ""; width: 6px; height: 6px; margin-top: 4px; background: var(--steel-3); display: inline-block; }
+.dev-card.featured li::before { background: var(--accent); }
+.dev-card .deliver {
+  margin-top: auto;
+  padding-top: 14px; border-top: 1px solid var(--steel);
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+}
+.dev-card .deliver strong { color: var(--paper); font-weight: 500; }
+
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 1100px) {
+  .stage { aspect-ratio: 16 / 11; }
+  .stage-annot[data-mobile-hide] { display: none; }     /* author may hide some on tablet */
+
+  .overview { grid-template-columns: 1fr; gap: 24px; }
+
+  .ps-grid { grid-template-columns: 1fr; }
+  .ps-cell { border-right: 0; border-bottom: 1px solid var(--steel); }
+  .ps-cell:last-child { border-bottom: 0; }
+
+  .feat-grid { grid-template-columns: repeat(2, 1fr); }
+  .ftile { border-right: 1px solid var(--steel); border-bottom: 1px solid var(--steel); }
+  .ftile:nth-child(2n) { border-right: 0; }
+  .ftile:nth-child(n+5) { border-bottom: 0; }
+
+  .adv { grid-template-columns: 40px 1fr; row-gap: 12px; padding: 22px 0; gap: 24px; }
+  .adv .desc, .adv .tag { grid-column: 2; justify-self: start; }
+
+  .dev-grid { grid-template-columns: 1fr; }
+  .dev-card { border-right: 0; border-bottom: 1px solid var(--steel); min-height: auto; }
+  .dev-card:last-child { border-bottom: 0; }
+}
+
+@media (max-width: 700px) {
+  /* Hide intricate stage annotations on small screens to keep visual clean */
+  .stage-annot { display: none; }
+  .stage { aspect-ratio: 4 / 3; margin: 0 var(--edge); }
+  .stage-mark .name { display: none; }
+  .stage-foot { font-size: 9px; }
+
+  /* Gallery → 1-column grid on phones, no horizontal scroll */
+  .gal-strip {
+    display: grid; grid-template-columns: 1fr; gap: 16px;
+    overflow: visible; padding-bottom: 0;
+  }
+  .gtile, .gtile.wide { width: 100%; aspect-ratio: 4 / 5; }
+
+  .feat-grid { grid-template-columns: 1fr; }
+  .ftile { border-right: 0 !important; }
+  .ftile:last-child { border-bottom: 0 !important; }
+
+  .ps-cell { padding: 24px 20px; }
+  .dev-card { padding: 24px 20px 28px; }
+}
